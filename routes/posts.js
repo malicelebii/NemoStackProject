@@ -33,14 +33,14 @@ router.get('/:id/edit',(req,res,next)=>{
 
 
 //Put update a post /posts/:id
-router.get('/:id',(req,res,next)=>{
+router.put('/:id',(req,res,next)=>{
     res.send('Update /posts/:id')
 })
 
 
 
 //Delete a post  /posts/:id
-router.get('/:id',(req,res,next)=>{
+router.delete('/:id',(req,res,next)=>{
     res.send('DELETE /posts/:id')
 })
 
