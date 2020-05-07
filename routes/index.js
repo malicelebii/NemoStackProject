@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
-const { postRegister } = require('../controllers/index');
+const { postRegister,postLogin,getLogout } = require('../controllers/index');
 const { errorHandler } = require('../middleware')//if you dont write /index like above javascript get it for you
 
 
@@ -29,16 +28,10 @@ router.get('/login', (req, res, next) => {
 
 
 /*post /login */
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}))
+router.post('/login',postLogin)
 
 /*Get /logout */
-router.get('/logout', (req, res, next) => {
-    req.logOut();
-    res.redirect('/');
-})
+router.get('/logout', getLogout)
 
 
 /*get /profile */
