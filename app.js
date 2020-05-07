@@ -45,6 +45,8 @@ app.use(session({
     saveUninitialized: true
     
   }))
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(User.createStrategy());
 
@@ -75,7 +77,7 @@ app.use((err, req, res, next) => {
 
     //render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.render('error');//{err:err}
 
 })
 
