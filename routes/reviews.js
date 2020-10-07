@@ -1,48 +1,16 @@
 const express = require('express');
 const router = express.Router({mergeParams:true}); // mergeParams allow us to receive posts' id
-
-//Get review index /posts/:id/reviews
-router.get('/',(req,res,next)=>{
-    res.send('posts/:id/reviews')
-})
-
-// //Get /posts/:id/reviews/new to create a review
-// router.get('/new',(req,res,next)=>{
-//     res.send('/reviews/new')
-// })
-
+const {asyncErrorHandler,isReviewAuthor} =require('../middleware/index');
+const {reviewCreate,reviewDelete,reviewUpdate} =require('../controllers/review')
 
 //Create a /posts/:id/reviews
-router.post('/',(req,res,next)=>{
-  //some mongoose processes 
-  res.send('GÖNDERDİMMM')
-})
+router.post('/',asyncErrorHandler(reviewCreate))
 
 
-//Get a specific  review /posts/:id/reviews/review_id   we used :id for posts so we cannot use that for review.then we use review_id
-router.get('/:review_id',(req,res,next)=>{
-    res.send('posts/:id/reviews/:review_id')
-})
-
-
-
-//Get a review editing
-router.get('/:id/edit',(req,res,next)=>{
-    res.send('posts/:id/reviews/:review_id/edit')
-})
-
-
-//Put update a review /reviews/:id
-router.put('/:id',(req,res,next)=>{
-    res.send('Update posts/:id/reviews/:review_id')
-})
-
-
+//Put update a review /posts/reviews/:review_id  --- we used :id for posts so we cannot use that for review.then we use review_id
+router.put('/:review_id',isReviewAuthor,asyncErrorHandler(reviewUpdate))
 
 //Delete a review  /reviews/:id
-router.delete('/:id',(req,res,next)=>{
-    res.send('DELETE posts/:id/reviews/:review_id')
-})
-
+router.delete('/:review_id',isReviewAuthor,asyncErrorHandler(reviewDelete))
 
 module.exports=router;

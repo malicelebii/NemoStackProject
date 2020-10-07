@@ -10,26 +10,20 @@ module.exports = {
     //Post /register
     async postRegister(req, res, next) {
         const newUser = new User({ username: req.body.username, email: req.body.email, image: req.body.image });
-        try {
-            await User.register(newUser, req.body.password)
-            res.redirect('/')
-        } catch (err) {
-            return next(err)
-        }
-
+        await User.register(newUser, req.body.password)
     },
 
     //Post /login
-    postLogin(req,res,next){
-        passport.authenticate('local',{
-            successRedirect:'/',
-            failureRedirect:'/login'
-        })(req,res,next);
+    postLogin(req, res, next) {
+        passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+        })(req, res, next);
     },
 
 
     //Get /logout
-    getLogout(req,res,next){
+    getLogout(req, res, next) {
         req.logout();
         res.redirect('/');
     }

@@ -1,0 +1,32 @@
+<%layout('layouts/post-edit-layout') -%>
+
+<h1>edit post!</h1>
+
+<form action="/posts/<%=post.id%>?_method=PUT" method="POST" id="postEditForm" enctype="multipart/form-data">
+
+    <div>
+
+        <input type="text" name="post[title]" id="" value="<%=post.title%>" placeholder="title">
+        <input type="text" name="post[price]" id="" value="<%=post.price%>" placeholder="price">
+        <div>
+            <input type="file" id="imageUpload" name="images" accept="images/*" multiple />
+            <div>
+                <% post.images.forEach((image,i)=>{ %>
+                <img src="<%-image.url%>" alt="" width="100px">
+                <label for="image<%=i%>">Delete ?</label>
+                <input type="checkbox" name="deleteImages[]" class="imageDeleteCheckbox" id="image<%=i%>"
+                    value="<%=image.public_id%>">
+                <% }) %>
+
+            </div>
+        </div>
+        <textarea name="post[description]" id="" cols="30" rows="10"
+            placeholder="description"><%=post.description%></textarea>
+        <input type="text" name="post[location]" id="" value="<%=post.location%>" placeholder="location">
+        <input type="submit" value="Change" id="">
+
+
+    </div>
+
+</form>
+

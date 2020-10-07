@@ -4,13 +4,7 @@ const Schema = require('mongoose')
 
 const userSchema=new mongoose.Schema({
     email:String,
-    image:String,
-    posts:[
-        {
-            type:Schema.Types.ObjectId,
-            ref:'Post'
-        }
-    ]
+    image:String
 })
 
 

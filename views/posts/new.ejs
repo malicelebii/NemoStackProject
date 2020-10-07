@@ -1,0 +1,30 @@
+<% layout('layouts/post-new-layout') -%>
+<h1>new post!</h1>
+
+<form action="/posts" method="POST" enctype="multipart/form-data" id = "postEditForm">
+
+    <div>
+
+        <input type="text" name="post[title]" id="" placeholder="Title">
+        <input type="text" name="post[price]" id="" placeholder="Price">
+        <div>
+            <input type="file" id="imageUpload"  name="images" accept="images/*" multiple />
+        </div>
+        <textarea name="post[description]" id="" cols="30" rows="10" placeholder="Description"></textarea>
+        <input type="text" name="post[location]" id="" placeholder="Location">
+        <input type="submit" id="">
+
+
+    </div>
+    <!-- 
+    title:String,
+    price:String,
+    description:String,
+
+    location:String,
+    -->
+
+
+</form>
+
+
